@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "bitcoin_agent"
+version = "0.1.0"
+description = "LangGraph 기반의 ReAct + Reflection 비트코인 트렌드 분석 Agent"
+authors = ["Your Name <your-email@example.com>"]
+readme = "README.md"
+packages = [{include = "src/bitcoin_agent"}]
+
+[tool.poetry.dependencies]
+python = "^3.10" # 최소 Python 버전 (LangChain 호환성 기준)
+
+# --- LangChain & LangGraph Core ---
+langchain = "^0.2.0"
+langgraph = "^0.1.0"
+langchain-openai = "^0.1.7" # ChatOpenAI
+
+# --- 환경 변수 로드 ---
+python-dotenv = "^1.0.1"   # run.py에서 .env 로드용
+
+# --- Tools 의존성 ---
+google-search-results = "^2.4.2" # [추가] SerpAPI 라이브러리
+yfinance = "^0.2.37"       # tools/market_data.py
+pandas = "^2.2.2"          # yfinance, pandas-ta의 필수 의존성
+pandas-ta = "^0.3.14b"     # tools/technical_analysis.py
+
+# --- (선택) LangChain 모니터링 ---
+# langsmith = "^0.1.50"      # Agent 디버깅 및 추적 (강력 추천)
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.main.api"

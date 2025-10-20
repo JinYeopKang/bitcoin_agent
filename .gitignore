@@ -1,0 +1,45 @@
+# --- Secrets ---
+# (!!!) 절대 Git에 커밋하면 안 되는 파일
+# API 키, 비밀번호 등 민감 정보를 포함합니다.
+.env
+*.env.local
+
+# --- Python Cache & Bytecode ---
+# 파이썬 실행 시 자동으로 생성되는 캐시 파일
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environments ---
+# 로컬 가상 환경 폴더 (용량이 매우 크고, 개인 설정에 따라 다름)
+.venv/
+venv/
+env/
+
+# --- IDE & Editor Configuration ---
+# VSCode, PyCharm 등 편집기 설정 파일
+.vscode/
+.idea/
+
+# --- Operating System Files ---
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# --- Testing & Coverage ---
+# pytest 실행 시 생성되는 캐시 및 커버리지 리포트
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Build & Distribution ---
+# (나중에 이 프로젝트를 패키징할 경우)
+build/
+dist/
+*.egg-info/
+
+# --- Logs ---
+# 실행 로그 파일
+*.log
