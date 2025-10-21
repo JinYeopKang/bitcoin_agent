@@ -58,7 +58,17 @@ def format_data_for_llm(state: AgentState) -> str:
     if tech_data:
         input_parts.append("[기술적 분석 데이터]\n" + json.dumps(tech_data, indent=2, ensure_ascii=False))
     else:
-        input_parts.append("[기술적 분석 데이터]\n데이터 없음")
+        # --- [핵심 수정] ---
+        # 기술적 분석이 실패했어도, 원본 시장 데이터가 있으면 대신 사용
+        market_data = state.get('market_data')
+        if market_data:
+            input_parts.append("[기술적 분석 데이터]\n(계산 실패. 원본 시장 데이터(일부)로 대체)")
+            # 데이터가 너무 길 수 있으므로 최신 5개만 요약
+            recent_data = market_data.get('data', [])[-5:]
+            input_parts.append(json.dumps(recent_data, indent=2, ensure_ascii=False))
+        else:
+            input_parts.append("[기술적 분석 데이터]\n데이터 없음")
+        # --- [수정 끝] ---
         
     # 2. 시장 정서 및 뉴스 데이터
     sentiment_data = state.get('sentiment_analysis')
